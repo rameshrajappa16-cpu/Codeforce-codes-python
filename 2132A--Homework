@@ -33,7 +33,8 @@ def solve():
 if __name__ == '__main__':
     solve()
 
-#{{inputs:----(
+'''
+~inputs:-
 4
 2
 ot
@@ -56,8 +57,9 @@ biz
 abon
 VVDD}}
 
-#outputs:----
+~outputs:-
 {{dota
 codeforces
 abacaba
 babizon}}
+'''
