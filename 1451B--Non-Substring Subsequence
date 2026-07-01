@@ -1,0 +1,68 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    out = []
+    for _ in range(t):
+        n = int(input_data[idx])
+        q = int(input_data[idx+1])
+        s = input_data[idx+2]
+        idx += 3
+        
+        for _ in range(q):
+            l = int(input_data[idx]) - 1
+            r = int(input_data[idx+1]) - 1
+            idx += 2
+            
+            possible = False
+            
+            # Check if s[l] appears anywhere before index l
+            for i in range(l):
+                if s[i] == s[l]:
+                    possible = True
+                    break
+                    
+            # Check if s[r] appears anywhere after index r
+            for i in range(r + 1, n):
+                if s[i] == s[r]:
+                    possible = True
+                    break
+                    
+            if possible:
+                out.append("YES")
+            else:
+                out.append("NO")
+                
+    print("\n".join(out))
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+2
+6 3
+001000
+2 4
+1 3
+3 5
+4 2
+1111
+1 4
+2 3
+
+~outputs:-
+YES
+NO
+YES
+NO
+YES
+
+'''
