@@ -1,0 +1,47 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    out = []
+    for _ in range(t):
+        n = int(input_data[idx])
+        
+        # Calculate sum of the array directly from input slice
+        total_sum = 0
+        for i in range(n):
+            total_sum += int(input_data[idx + 1 + i])
+            
+        idx += 1 + n
+        
+        rem = total_sum % n
+        ans = rem * (n - rem)
+        out.append(str(ans))
+        
+    print("\n".join(out))
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+3
+3
+1 2 3
+4
+0 1 1 0
+10
+8 3 6 11 5 2 1 7 10 4
+
+~outputs:-
+0
+4
+21
+
+'''
