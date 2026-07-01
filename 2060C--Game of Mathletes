@@ -1,0 +1,57 @@
+#inputs and outputs are at the bottom
+import sys
+from collections import Counter
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        k = int(input_data[idx+1])
+        
+        counts = Counter()
+        for i in range(n):
+            counts[int(input_data[idx + 2 + i])] += 1
+            
+        idx += 2 + n
+        
+        score = 0
+        for num in list(counts.keys()):
+            target = k - num
+            
+            if num == target:
+                score += counts[num] // 2
+            elif num < target:
+                if target in counts:
+                    pairs = min(counts[num], counts[target])
+                    score += pairs
+                    
+        print(score)
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+4
+4 4
+1 2 3 2
+8 15
+1 2 3 4 5 6 7 8
+6 1
+1 1 1 1 1 1
+16 9
+3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3
+
+~outputs:-
+2
+1
+0
+4
+
+'''
