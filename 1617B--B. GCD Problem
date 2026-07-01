@@ -1,0 +1,36 @@
+#inputs and outputs are at the bottom
+import math
+ 
+# Number of test cases
+T = int(input())
+ 
+for _ in range(T):
+    n = int(input())
+ 
+    # Fix c = 1
+    # Try small values of b until gcd(a, b) == 1
+    b = 2
+    while True:
+        a = n - 1 - b
+        if math.gcd(a, b) == 1:
+            print(a, b, 1)
+            break
+        b += 1
+'''
+~inputs:-
+6
+18
+63
+73
+91
+438
+122690412
+
+~outputs:-
+6 9 3
+21 39 3
+29 43 1
+49 35 7
+146 219 73
+28622 122661788 2
+'''
