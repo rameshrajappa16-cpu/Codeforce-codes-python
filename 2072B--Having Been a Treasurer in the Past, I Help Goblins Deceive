@@ -1,0 +1,59 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        s = input_data[idx+1]
+        idx += 2
+        
+        dash_count = s.count('-')
+        underscore_count = n - dash_count
+        
+        left_dashes = dash_count // 2
+        right_dashes = dash_count - left_dashes
+        
+        ans = left_dashes * right_dashes * underscore_count
+        print(ans)
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+8
+3
+--_
+5
+__-__
+9
+--__-_---
+4
+_--_
+10
+_-_-_-_-_-
+7
+_------
+1
+-
+2
+_-
+
+~outputs:-
+1
+0
+27
+2
+30
+9
+0
+0
+
+'''
