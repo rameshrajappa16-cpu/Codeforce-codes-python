@@ -1,0 +1,61 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        s = input_data[idx+1]
+        idx += 2
+        
+        vowels = {'a', 'e'}
+        syllables = []
+        i = n - 1
+        
+        while i >= 0:
+            if s[i] in vowels:
+                # Syllable is CV (length 2)
+                syllables.append(s[i-1 : i+1])
+                i -= 2
+            else:
+                # Syllable is CVC (length 3)
+                syllables.append(s[i-2 : i+1])
+                i -= 3
+                
+        syllables.reverse()
+        print(".".join(syllables))
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+6
+8
+bacedbab
+4
+baba
+13
+daddecabeddad
+3
+dac
+6
+dacdac
+22
+dababbabababbabbababba
+
+~outputs:-
+ba.ced.bab
+ba.ba
+dad.de.ca.bed.dad
+dac
+dac.dac
+da.bab.ba.ba.bab.bab.ba.bab.ba
+
+'''
