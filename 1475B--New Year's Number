@@ -1,0 +1,41 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    
+    for i in range(1, t + 1):
+        n = int(input_data[i])
+        
+        rem = n % 2020
+        div = n // 2020
+        
+        if rem <= div:
+            print("YES")
+        else:
+            print("NO")
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+5
+1
+4041
+4042
+8081
+8079
+
+~outputs:-
+NO
+YES
+YES
+YES
+NO
+
+'''
