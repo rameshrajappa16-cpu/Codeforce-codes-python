@@ -1,0 +1,63 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        p = [int(x) for x in input_data[idx+1 : idx+1+n]]
+        idx += 1 + n
+        
+        if n == 1:
+            print(-1)
+            continue
+            
+        available = list(range(1, n + 1))
+        q = []
+        
+        for i in range(n - 2):
+            if available[0] == p[i]:
+                q.append(available[1])
+                available.pop(1)
+            else:
+                q.append(available[0])
+                available.pop(0)
+                
+        # Handle the last two elements explicitly to prevent clashing at the end
+        if available[0] == p[n-2] or available[1] == p[n-1]:
+            q.append(available[1])
+            q.append(available[0])
+        else:
+            q.append(available[0])
+            q.append(available[1])
+            
+        print(*(q))
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+4
+3
+1 2 3
+5
+2 3 4 5 1
+4
+2 3 1 4
+1
+1
+
+~outputs:-
+2 3 1
+1 2 3 4 5
+1 2 4 3
+-1
+
+'''
