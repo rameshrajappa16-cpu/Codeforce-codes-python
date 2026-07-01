@@ -1,0 +1,59 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    for _ in range(t):
+        n = int(input_data[idx])
+        h = int(input_data[idx+1])
+        m = int(input_data[idx+2])
+        idx += 3
+        
+        # Bedtime converted to absolute minutes from midnight
+        sleep_time = h * 60 + m
+        min_sleep = 24 * 60  # Upper bound initialization (1440 minutes)
+        
+        for _ in range(n):
+            alarm_h = int(input_data[idx])
+            alarm_m = int(input_data[idx+1])
+            idx += 2
+            
+            alarm_time = alarm_h * 60 + alarm_m
+            
+            # Distance to the alarm accounting for the 24-hour cycle rotation
+            duration = (alarm_time - sleep_time + 1440) % 1440
+            
+            if duration < min_sleep:
+                min_sleep = duration
+                
+        # Convert total minimum minutes back to hours and minutes
+        print(min_sleep // 60, min_sleep % 60)
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+3
+1 6 13
+8 0
+3 6 0
+12 30
+14 45
+6 0
+2 23 35
+20 15
+10 30
+
+~outputs:-
+1 47
+0 0
+10 55
+
+'''
