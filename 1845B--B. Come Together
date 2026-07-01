@@ -1,0 +1,62 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    idx = 1
+    
+    out = []
+    for _ in range(t):
+        xa = int(input_data[idx])
+        ya = int(input_data[idx+1])
+        xb = int(input_data[idx+2])
+        yb = int(input_data[idx+3])
+        xc = int(input_data[idx+4])
+        yc = int(input_data[idx+5])
+        idx += 6
+        
+        shared_x = 0
+        # Check if B and C are on the same horizontal side of A
+        if (xb > xa and xc > xa):
+            shared_x = min(xb - xa, xc - xa)
+        elif (xb < xa and xc < xa):
+            shared_x = min(xa - xb, xa - xc)
+            
+        shared_y = 0
+        # Check if B and C are on the same vertical side of A
+        if (yb > ya and yc > ya):
+            shared_y = min(yb - ya, yc - ya)
+        elif (yb < ya and yc < ya):
+            shared_y = min(ya - yb, ya - yc)
+            
+        # Total cells is shared paths + 1 for the starting cell
+        out.append(str(shared_x + shared_y + 1))
+        
+    print("\n".join(out))
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+3
+3 1
+1 3
+6 4
+5 2
+2 2
+7 2
+1 1
+4 3
+5 5
+
+~outputs:-
+3
+1
+6
+
+'''
