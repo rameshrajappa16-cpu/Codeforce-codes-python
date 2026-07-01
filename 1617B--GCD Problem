@@ -1,0 +1,48 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    
+    for i in range(1, t + 1):
+        n = int(input_data[i])
+        
+        if n % 2 == 0:
+            a = n // 2 - 1
+            b = n // 2 + 1
+            if a % 2 == 0:
+                a -= 1
+                b += 1
+            print(a, b, 1)
+        else:
+            mid = n // 2
+            if mid % 2 == 0:
+                print(mid - 1, mid + 1, 1)
+            else:
+                print(mid - 2, mid + 2, 1)
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+6
+18
+63
+73
+91
+438
+122690412
+
+~outputs:-
+6 9 3
+21 39 3
+29 43 1
+49 35 7
+146 219 73
+28622 122661788 2
+'''
