@@ -1,0 +1,54 @@
+#inputs and outputs are at the bottom
+import sys
+
+def solve():
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
+        
+    t = int(input_data[0])
+    
+    for i in range(1, t + 1):
+        s = input_data[i]
+        n = len(s)
+        
+        bal = 0
+        possible = False
+        
+        # Scan the inner string characters excluding boundaries
+        for j in range(1, n - 1):
+            if s[j] == '(':
+                bal += 1
+            else:
+                bal -= 1
+                
+            if bal < 0:
+                possible = True
+                break
+                
+        if possible:
+            print("YES")
+        else:
+            if bal == 0:
+                print("NO")
+            else:
+                print("YES")
+
+if __name__ == '__main__':
+    solve()
+
+'''
+~inputs:-
+4
+(())
+(())()()
+()
+(())(())
+
+~outputs:-
+NO
+YES
+NO
+YES
+
+'''
